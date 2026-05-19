@@ -15,9 +15,9 @@ public interface IActividadesService {
     /**
      * Funcion para actualizar una actividad en la base de datos en funcion del id
      * @param id id de la actividad a actualizar
-     * @return la actividad actualizada
+     * @return si se actualiza true
      */
-    public Actividades update(int id);
+    public boolean update(Actividades actividade);
 
     /**
      * Funcion que borra una actividad de la base de datos

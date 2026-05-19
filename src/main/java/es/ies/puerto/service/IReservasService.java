@@ -15,9 +15,9 @@ public interface IReservasService {
     /**
      * Funcion para actualizar una reserva en la base de datos en funcion del id
      * @param id id de la reserva a actualizar
-     * @return la reserva actualizada
+     * @return true si la reserva se actualizada
      */
-    public Reservas update();
+    public boolean update(Reservas reserva);
 
     /**
      * Funcion que borra una reserva de la base de datos

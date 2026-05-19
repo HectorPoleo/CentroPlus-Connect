@@ -15,9 +15,9 @@ public interface IIncidenciasService {
     /**
      * Funcion para actualizar una incidencia en la base de datos en funcion del id
      * @param id id de la incidencia a actualizar
-     * @return la incidencia actualizada
+     * @return true si se actualiza
      */
-    public Incidencias update();
+    public boolean update(Incidencias incidencias);
 
     /**
      * Funcion que borra una incidencia de la base de datos
