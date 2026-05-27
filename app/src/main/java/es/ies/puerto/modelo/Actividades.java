@@ -8,15 +8,34 @@ public class Actividades {
     String nombre;
     String tipoActividad;
     int duracion;
-    int precio;
+    double precio;
     int plazas_maximas;
     int plazas_ocupadas;
 
+    /**
+     * Constructor por defecto
+     */
     public Actividades(){
 
     }
-
-    public Actividades(int id, String nombre, String tipoActividad, int duracion, int precio, int plazas_maximas, int plazas_ocupadas) {
+    /**
+     * Constructor para busqueda
+     * @param id Identificador de la actividad
+     */
+    public Actividades(int id){
+        this.id = id;
+    }
+    /**
+     * Constructor de la clase
+     * @param id Identificador de la actividad
+     * @param nombre Nombre de la actividad
+     * @param tipoActividad Tipo de la actividad
+     * @param duracion Duracion de la actividdad
+     * @param precio Precio de la actividad
+     * @param plazas_maximas Plazas maximas
+     * @param plazas_ocupadas Plazas ocupadas
+     */
+    public Actividades(int id, String nombre, String tipoActividad, int duracion, double precio, int plazas_maximas, int plazas_ocupadas) {
         this.id = id;
         this.nombre = nombre;
         this.tipoActividad = tipoActividad;
@@ -58,7 +77,7 @@ public class Actividades {
         this.duracion = duracion;
     }
 
-    public int getPrecio() {
+    public double getPrecio() {
         return this.precio;
     }
 
@@ -82,21 +101,30 @@ public class Actividades {
         this.plazas_ocupadas = plazas_ocupadas;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Actividades)) {
+            return false;
+        }
+        Actividades actividades = (Actividades) o;
+        return id == actividades.id;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean cancelarPlaza(){
+        int cancelar;
+        cancelar = plazas_ocupadas-1;
+        if(cancelar < plazas_ocupadas){
             return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Actividades other = (Actividades) obj;
-        return id == other.id;
+        }
+        return false;
     }
 
     @Override

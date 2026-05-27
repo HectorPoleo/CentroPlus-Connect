@@ -20,7 +20,7 @@ public class ActividadesRepository extends SQLiteConnectionManager implements IA
             sentencia.setString(2, actividad.getNombre());
             sentencia.setString(3, actividad.getTipoActividad());
             sentencia.setInt(4, actividad.getDuracion());
-            sentencia.setInt(5, actividad.getPrecio());
+            sentencia.setDouble(5, actividad.getPrecio());
             sentencia.setInt(6, actividad.getPlazas_maximas());
             sentencia.setInt(7, actividad.getPlazas_ocupadas());
             return sentencia.executeUpdate() > 0;
@@ -37,7 +37,7 @@ public class ActividadesRepository extends SQLiteConnectionManager implements IA
             sentencia.setString(1, actividad.getNombre());
             sentencia.setString(2, actividad.getTipoActividad());
             sentencia.setInt(3, actividad.getDuracion());
-            sentencia.setInt(4, actividad.getPrecio());
+            sentencia.setDouble(4, actividad.getPrecio());
             sentencia.setInt(5, actividad.getPlazas_maximas());
             sentencia.setInt(6, actividad.getPlazas_ocupadas());
             sentencia.setInt(7, actividad.getId());

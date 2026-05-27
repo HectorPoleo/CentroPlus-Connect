@@ -14,6 +14,10 @@ public class Incidencias extends Reservas{
         super();
     }
 
+    public Incidencias(int idIncidencia){
+        this.idIncidencia = idIncidencia;
+    }
+
     public Incidencias(int idIncidencia, int idUsuario, String asunto, String descripcion, String fecha, String estado) {
         super(idUsuario);
         this.idIncidencia = idIncidencia;
@@ -63,27 +67,24 @@ public class Incidencias extends Reservas{
         this.estado = estado;
     }
 
+ 
+
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result + Objects.hash(idIncidencia);
-        return result;
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Incidencias)) {
+            return false;
+        }
+        Incidencias incidencias = (Incidencias) o;
+        return idIncidencia == incidencias.idIncidencia;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (!super.equals(obj))
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Incidencias other = (Incidencias) obj;
-        return idIncidencia == other.idIncidencia;
+    public int hashCode() {
+        return Objects.hash(idIncidencia);
     }
+    
 
     @Override
     public String toString() {

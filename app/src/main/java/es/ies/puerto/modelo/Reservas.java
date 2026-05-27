@@ -57,27 +57,23 @@ public class Reservas extends Usuario{
         this.estado = estado;
     }
 
+
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result + Objects.hash(idReserva);
-        return result;
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Reservas)) {
+            return false;
+        }
+        Reservas reservas = (Reservas) o;
+        return idReserva == reservas.idReserva;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (!super.equals(obj))
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Reservas other = (Reservas) obj;
-        return idReserva == other.idReserva;
+    public int hashCode() {
+        return Objects.hash(idReserva);
     }
+    
 
     @Override
     public String toString() {
