@@ -2,10 +2,6 @@
 
 # CentroPlus Connect — Proyecto Intermodular
 
-<div align="center" width="200">
-     <img src="images/centroplus.png">
-</div>
-
 ## 1. Introducción
 
 ### Objetivo general
