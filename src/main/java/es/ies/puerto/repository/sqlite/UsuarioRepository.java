@@ -24,7 +24,7 @@ public class UsuarioRepository extends SQLiteConnectionManager implements IUsuar
             sentencia.setString(6, usuario.getTipo_usuario());
             return sentencia.executeUpdate() > 0;
         } catch (Exception e) {
-            System.err.println("Error creando usuario");
+            System.err.println("Error guardando usuario: " + e.getMessage());
             return false;
         }
     }
@@ -32,7 +32,7 @@ public class UsuarioRepository extends SQLiteConnectionManager implements IUsuar
     @Override
     public boolean update(Usuario usuario) {
         try (Connection connection = getConnection();
-            PreparedStatement sentencia = connection.prepareStatement("UPDATE usuarios SET nombre = ?, dni = ?, email = ?, telefono = ?, tipo_usuario = ?")){
+            PreparedStatement sentencia = connection.prepareStatement("UPDATE usuarios SET nombre = ?, dni = ?, email = ?, telefono = ?, tipo_usuario = ? WHERE id = ?")){
             sentencia.setString(1, usuario.getNombre());
             sentencia.setString(2, usuario.getDni());
             sentencia.setString(3, usuario.getEmail());
@@ -41,31 +41,29 @@ public class UsuarioRepository extends SQLiteConnectionManager implements IUsuar
             sentencia.setInt(6, usuario.getId());
             return sentencia.executeUpdate() > 0;
         } catch (Exception e) {
-            System.err.println("Error creando usuario");
+            System.err.println("Error actualizando usuario: " + e.getMessage());
             return false;
         }
     }
 
     @Override
     public Usuario findById(int id) {
-        Usuario usuario = null;
         try (Connection connection = getConnection();
         PreparedStatement setencia = connection.prepareStatement("SELECT * FROM usuarios WHERE id =?")){
             setencia.setInt(1, id);
             ResultSet resultado = setencia.executeQuery();
-            while (resultado.next()) {
+            if (resultado.next()) {
                 String nombre = resultado.getString("nombre");
                 String dni = resultado.getString("dni");
                 String email = resultado.getString("email");
                 String telefono = resultado.getString("telefono");
                 String tipoUsuario = resultado.getString("tipo_usuario");
-                usuario = new Usuario(id, nombre, dni, email, telefono, tipoUsuario);
+                return new Usuario(id, nombre, dni, email, telefono, tipoUsuario);
             }
-            return usuario;
         } catch (Exception e) {
-            System.err.println("Error buscando los usuarios");
-            return null;
+            System.err.println("Error buscando usuario por ID: " + e.getMessage());
         }
+        return null;
     }
 
     @Override
@@ -74,7 +72,6 @@ public class UsuarioRepository extends SQLiteConnectionManager implements IUsuar
         try (Connection connection = getConnection();
         PreparedStatement setencia = connection.prepareStatement("SELECT * FROM usuarios")){
             ResultSet resultado = setencia.executeQuery();
-
             while (resultado.next()) {
                 int id = resultado.getInt("id");
                 String nombre = resultado.getString("nombre");
@@ -84,24 +81,21 @@ public class UsuarioRepository extends SQLiteConnectionManager implements IUsuar
                 String tipoUsuario = resultado.getString("tipo_usuario");
                 usuarios.add(new Usuario(id, nombre, dni, email, telefono, tipoUsuario));
             }
-            return usuarios;
-            
         } catch (Exception e) {
-            System.err.println("Error buscando los usuarios");
-            return null;
+            System.err.println("Error buscando todos los usuarios: " + e.getMessage());
         }
+        return usuarios;
     }
 
     @Override
     public boolean delete(int id) {
         try (Connection connection = getConnection();
-        PreparedStatement setencia = connection.prepareStatement("DELETE * FROM usuarios WHERE id =?")){
+        PreparedStatement setencia = connection.prepareStatement("DELETE FROM usuarios WHERE id = ?")){
             setencia.setInt(1, id);
-            return setencia.executeUpdate() == 1;
+            return setencia.executeUpdate() > 0;
         } catch (Exception e) {
-            System.err.println("Error al eliminar el usuario");
+            System.err.println("Error eliminando usuario: " + e.getMessage());
             return false;
         }
     }
-    
 }

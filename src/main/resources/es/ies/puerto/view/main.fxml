@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="es.ies.puerto.controller.MainController" prefHeight="600.0" prefWidth="900.0">
+    <left>
+        <VBox spacing="10" style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+            <Label text="CentroPlus" style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;"/>
+            <Separator/>
+            <Button text="Actividades" onAction="#showActividades" maxWidth="Infinity" style="-fx-background-color: #34495e; -fx-text-fill: white;"/>
+            <Button text="Reservas" onAction="#showReservas" maxWidth="Infinity" style="-fx-background-color: #34495e; -fx-text-fill: white;"/>
+            <Button text="Incidencias" onAction="#showIncidencias" maxWidth="Infinity" style="-fx-background-color: #34495e; -fx-text-fill: white;"/>
+            <Button text="Usuarios" onAction="#showUsuarios" maxWidth="Infinity" style="-fx-background-color: #34495e; -fx-text-fill: white;"/>
+            <Region VBox.vgrow="ALWAYS"/>
+            <Label fx:id="statusLabel" text="Conectado" style="-fx-text-fill: #27ae60;"/>
+        </VBox>
+    </left>
+    <center>
+        <StackPane fx:id="contentArea">
+            <VBox alignment="CENTER" spacing="20">
+                <Label text="Bienvenido a CentroPlus Connect" style="-fx-font-size: 24;"/>
+                <Label text="Selecciona una opción del menú lateral para comenzar."/>
+            </VBox>
+        </StackPane>
+    </center>
+</BorderPane>
