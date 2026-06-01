@@ -3,7 +3,6 @@ package es.ies.puerto.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
@@ -13,8 +12,6 @@ public class MainController {
 
     @FXML
     private StackPane contentArea;
-    @FXML
-    private Label statusLabel;
 
     @FXML
     public void showActividades() {
@@ -23,11 +20,13 @@ public class MainController {
 
     @FXML
     public void showReservas() {
+        System.out.println("Cargando reservas...");
         loadView("/es/ies/puerto/view/reservas.fxml");
     }
 
     @FXML
     public void showIncidencias() {
+        System.out.println("Cargando incidencias...");
         loadView("/es/ies/puerto/view/incidencias.fxml");
     }
 
@@ -39,18 +38,18 @@ public class MainController {
     private void loadView(String fxmlPath) {
         try {
             URL url = getClass().getResource(fxmlPath);
+            System.out.println("Ruta FXML: " + url);
             if (url == null) {
-                statusLabel.setText("Error: No se encuentra " + fxmlPath);
                 System.err.println("No se encuentra el archivo FXML en: " + fxmlPath);
                 return;
             }
             FXMLLoader loader = new FXMLLoader(url);
             Parent view = loader.load();
             contentArea.getChildren().setAll(view);
-            statusLabel.setText("Cargado: " + fxmlPath.substring(fxmlPath.lastIndexOf("/") + 1));
+            System.out.println("Vista cargada correctamente: " + fxmlPath);
         } catch (IOException e) {
+            System.err.println("Error al cargar vista: " + fxmlPath);
             e.printStackTrace();
-            statusLabel.setText("Error al cargar vista: " + fxmlPath);
         }
     }
 }

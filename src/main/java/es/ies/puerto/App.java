@@ -11,9 +11,11 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/es/ies/puerto/view/main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("CentroPlus Connect");
         stage.setScene(scene);
+        stage.setMinWidth(360);
+        stage.setMinHeight(600);
         stage.show();
     }
 
