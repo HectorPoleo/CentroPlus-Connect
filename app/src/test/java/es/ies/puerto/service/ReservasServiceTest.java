@@ -1,11 +1,20 @@
-package es.ies.puerto;
+package es.ies.puerto.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.*;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+
 import es.ies.puerto.connection.SQLiteConnectionManager;
 import es.ies.puerto.modelo.Reservas;
 import es.ies.puerto.service.sqlite.ReservasService;
-import java.util.List;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ReservasServiceTest {
@@ -14,7 +23,7 @@ public class ReservasServiceTest {
 
     @BeforeAll
     public static void setUp() {
-        SQLiteConnectionManager.setDatabasePath("src/test/resources/centroplus-test.db");
+        SQLiteConnectionManager.setDatabasePath("src/main/resources/es/ies/puerto/database/centroplus-test.db");
         reservasService = new ReservasService();
     }
 

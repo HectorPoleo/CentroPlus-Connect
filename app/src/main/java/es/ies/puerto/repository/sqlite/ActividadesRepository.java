@@ -21,8 +21,8 @@ public class ActividadesRepository extends SQLiteConnectionManager implements IA
             sentencia.setString(3, actividad.getTipoActividad());
             sentencia.setInt(4, actividad.getDuracion());
             sentencia.setDouble(5, actividad.getPrecio());
-            sentencia.setInt(6, actividad.getPlazas_maximas());
-            sentencia.setInt(7, actividad.getPlazas_ocupadas());
+            sentencia.setInt(6, actividad.getPlazasMaximas());
+            sentencia.setInt(7, actividad.getPlazasOcupadas());
             return sentencia.executeUpdate() > 0;
         } catch (Exception e) {
             System.err.println("Error guardando actividad: " + e.getMessage());
@@ -38,8 +38,8 @@ public class ActividadesRepository extends SQLiteConnectionManager implements IA
             sentencia.setString(2, actividad.getTipoActividad());
             sentencia.setInt(3, actividad.getDuracion());
             sentencia.setDouble(4, actividad.getPrecio());
-            sentencia.setInt(5, actividad.getPlazas_maximas());
-            sentencia.setInt(6, actividad.getPlazas_ocupadas());
+            sentencia.setInt(5, actividad.getPlazasMaximas());
+            sentencia.setInt(6, actividad.getPlazasOcupadas());
             sentencia.setInt(7, actividad.getId());
             return sentencia.executeUpdate() > 0;
         } catch (Exception e) {

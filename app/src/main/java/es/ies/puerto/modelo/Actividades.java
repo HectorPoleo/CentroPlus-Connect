@@ -9,8 +9,8 @@ public class Actividades {
     String tipoActividad;
     int duracion;
     double precio;
-    int plazas_maximas;
-    int plazas_ocupadas;
+    int plazasMaximas;
+    int plazasOcupadas;
 
     /**
      * Constructor por defecto
@@ -32,17 +32,17 @@ public class Actividades {
      * @param tipoActividad Tipo de la actividad
      * @param duracion Duracion de la actividdad
      * @param precio Precio de la actividad
-     * @param plazas_maximas Plazas maximas
-     * @param plazas_ocupadas Plazas ocupadas
+     * @param plazasMaximas Plazas maximas
+     * @param plazasOcupadas Plazas ocupadas
      */
-    public Actividades(int id, String nombre, String tipoActividad, int duracion, double precio, int plazas_maximas, int plazas_ocupadas) {
+    public Actividades(int id, String nombre, String tipoActividad, int duracion, double precio, int plazasMaximas, int plazasOcupadas) {
         this.id = id;
         this.nombre = nombre;
         this.tipoActividad = tipoActividad;
         this.duracion = duracion;
         this.precio = precio;
-        this.plazas_maximas = plazas_maximas;
-        this.plazas_ocupadas = plazas_ocupadas;
+        this.plazasMaximas = plazasMaximas;
+        this.plazasOcupadas = plazasOcupadas;
     }
 
     public int getId() {
@@ -85,20 +85,20 @@ public class Actividades {
         this.precio = precio;
     }
 
-    public int getPlazas_maximas() {
-        return this.plazas_maximas;
+    public int getPlazasMaximas() {
+        return this.plazasMaximas;
     }
 
-    public void setPlazas_maximas(int plazas_maximas) {
-        this.plazas_maximas = plazas_maximas;
+    public void setPlazasMaximas(int plazasMaximas) {
+        this.plazasMaximas = plazasMaximas;
     }
 
-    public int getPlazas_ocupadas() {
-        return this.plazas_ocupadas;
+    public int getPlazasOcupadas() {
+        return this.plazasOcupadas;
     }
 
-    public void setPlazas_ocupadas(int plazas_ocupadas) {
-        this.plazas_ocupadas = plazas_ocupadas;
+    public void setPlazasOcupadas(int plazasOcupadas) {
+        this.plazasOcupadas = plazasOcupadas;
     }
 
 
@@ -119,12 +119,11 @@ public class Actividades {
     }
 
     public boolean cancelarPlaza(){
-        int cancelar;
-        cancelar = plazas_ocupadas-1;
-        if(cancelar < plazas_ocupadas){
-            return true;
+        if(plazasOcupadas <= 0){
+            return false;
         }
-        return false;
+        plazasOcupadas--;
+        return true;
     }
 
     @Override
@@ -135,8 +134,8 @@ public class Actividades {
             ", tipoActividad='" + getTipoActividad() + "'" +
             ", duracion='" + getDuracion() + "'" +
             ", precio='" + getPrecio() + "'" +
-            ", plazas_maximas='" + getPlazas_maximas() + "'" +
-            ", plazas_ocupadas='" + getPlazas_ocupadas() + "'" +
+            ", plazasMaximas='" + getPlazasMaximas() + "'" +
+            ", plazasOcupadas='" + getPlazasOcupadas() + "'" +
             "}";
     }
 }
