@@ -25,4 +25,7 @@
             <Label text="Pulsa un botón para empezar" style="-fx-font-size: 14;"/>
         </VBox>
     </StackPane>
+
+    <!-- Barra de estado -->
+    <Label fx:id="statusLabel" text="Listo" style="-fx-padding: 10; -fx-background-color: #ecf0f1;"/>
 </VBox>

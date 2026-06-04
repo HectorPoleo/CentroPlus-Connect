@@ -19,7 +19,8 @@ public class Incidencias extends Reservas{
     }
 
     public Incidencias(int idIncidencia, int idUsuario, String asunto, String descripcion, String fecha, String estado) {
-        super(idUsuario);
+        super();
+        setId(idUsuario);
         this.idIncidencia = idIncidencia;
         this.asunto = asunto;
         this.descripcion = descripcion;

@@ -40,17 +40,25 @@ public class MainController {
         try {
             URL url = getClass().getResource(fxmlPath);
             if (url == null) {
-                statusLabel.setText("Error: No se encuentra " + fxmlPath);
+                if (statusLabel != null) {
+                    statusLabel.setText("Error: No se encuentra " + fxmlPath);
+                }
                 System.err.println("No se encuentra el archivo FXML en: " + fxmlPath);
                 return;
             }
             FXMLLoader loader = new FXMLLoader(url);
             Parent view = loader.load();
-            contentArea.getChildren().setAll(view);
-            statusLabel.setText("Cargado: " + fxmlPath.substring(fxmlPath.lastIndexOf("/") + 1));
+            if (contentArea != null) {
+                contentArea.getChildren().setAll(view);
+            }
+            if (statusLabel != null) {
+                statusLabel.setText("Cargado: " + fxmlPath.substring(fxmlPath.lastIndexOf("/") + 1));
+            }
         } catch (IOException e) {
             e.printStackTrace();
-            statusLabel.setText("Error al cargar vista: " + fxmlPath);
+            if (statusLabel != null) {
+                statusLabel.setText("Error al cargar vista: " + fxmlPath);
+            }
         }
     }
 }

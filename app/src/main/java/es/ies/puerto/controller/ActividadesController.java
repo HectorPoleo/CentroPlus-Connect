@@ -51,14 +51,34 @@ public class ActividadesController implements Initializable {
         service = new ActividadesService();
 
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        colTipo.setCellValueFactory(new PropertyValueFactory<>("tipoActividad"));
-        colDuracion.setCellValueFactory(new PropertyValueFactory<>("duracion"));
-        colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
-        colMax.setCellValueFactory(new PropertyValueFactory<>("plazas_maximas"));
-        colOcupadas.setCellValueFactory(new PropertyValueFactory<>("plazas_ocupadas"));
+            colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+            colTipo.setCellValueFactory(new PropertyValueFactory<>("tipoActividad"));
+            colDuracion.setCellValueFactory(new PropertyValueFactory<>("duracion"));
+            colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
+            colMax.setCellValueFactory(new PropertyValueFactory<>("plazasMaximas"));
+            colOcupadas.setCellValueFactory(new PropertyValueFactory<>("plazasOcupadas"));
 
         loadData();
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterActividades(newValue);
+        });
+    }
+
+    private void filterActividades(String searchText) {
+        if (searchText == null || searchText.trim().isEmpty()) {
+            actividadesTable.setItems(masterData);
+            return;
+        }
+        ObservableList<Actividades> filteredList = FXCollections.observableArrayList();
+        String lowerSearch = searchText.toLowerCase();
+        for (Actividades actividad : masterData) {
+            if (actividad.getNombre().toLowerCase().contains(lowerSearch) ||
+                actividad.getTipoActividad().toLowerCase().contains(lowerSearch)) {
+                filteredList.add(actividad);
+            }
+        }
+        actividadesTable.setItems(filteredList);
     }
 
     @FXML
