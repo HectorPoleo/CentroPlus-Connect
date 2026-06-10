@@ -731,19 +731,7 @@ cd CentroPlus-Connect/backend
 ## Compilar el proyecto
 
 ```bash
-mvn clean package
-```
-
-Al finalizar correctamente se generará el archivo:
-
-```text
-target/centroplus-connect-1.0-SNAPSHOT.jar
-```
-
-## Ejecutar la aplicación
-
-```bash
-java -jar target/centroplus-connect-1.0-SNAPSHOT.jar
+mvn spring-boot:run
 ```
 
 Si todo funciona correctamente aparecerá el arranque de Spring Boot en consola.
@@ -753,7 +741,7 @@ Si todo funciona correctamente aparecerá el arranque de Spring Boot en consola.
 Por defecto la aplicación estará disponible en:
 
 ```text
-http://localhost:8080/swagger-ui/index.html
+http://localhost:8090/
 ```
 
 ## Documentación Swagger / OpenAPI
@@ -761,21 +749,7 @@ http://localhost:8080/swagger-ui/index.html
 Una vez iniciada la aplicación, la documentación estará disponible en:
 
 ```text
-http://localhost:8080/swagger-ui/index.html
-```
-
-## Desarrollo
-
-Para recompilar el proyecto:
-
-```bash
-mvn clean package
-```
-
-y volver a ejecutarlo:
-
-```bash
-java -jar target/centroplus-connect-1.0-SNAPSHOT.jar
+http://localhost:8090/swagger-ui/index.html
 ```
 
 ## Tecnologías utilizadas
