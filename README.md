@@ -753,7 +753,7 @@ Si todo funciona correctamente aparecerá el arranque de Spring Boot en consola.
 Por defecto la aplicación estará disponible en:
 
 ```text
-http://localhost:8080
+http://localhost:8080/swagger-ui/index.html
 ```
 
 ## Documentación Swagger / OpenAPI
