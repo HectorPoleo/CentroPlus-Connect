@@ -707,5 +707,88 @@ Al finalizar el proyecto el alumnado deberá ser capaz de:
 
 ---
 
+---
+
+## Requisitos
+
+- Java 21 o superior
+- Apache Maven 3.9 o superior
+
+Comprobar las versiones instaladas:
+
+```bash
+java -version
+mvn -version
+```
+
+## Clonar el proyecto
+
+```bash
+git clone <url-del-repositorio>
+cd CentroPlus-Connect/backend
+```
+
+## Compilar el proyecto
+
+```bash
+mvn clean package
+```
+
+Al finalizar correctamente se generará el archivo:
+
+```text
+target/centroplus-connect-1.0-SNAPSHOT.jar
+```
+
+## Ejecutar la aplicación
+
+```bash
+java -jar target/centroplus-connect-1.0-SNAPSHOT.jar
+```
+
+Si todo funciona correctamente aparecerá el arranque de Spring Boot en consola.
+
+## Acceso a la API
+
+Por defecto la aplicación estará disponible en:
+
+```text
+http://localhost:8080/swagger-ui/index.html
+```
+
+## Documentación Swagger / OpenAPI
+
+Una vez iniciada la aplicación, la documentación estará disponible en:
+
+```text
+http://localhost:8080/swagger-ui/index.html
+```
+
+## Desarrollo
+
+Para recompilar el proyecto:
+
+```bash
+mvn clean package
+```
+
+y volver a ejecutarlo:
+
+```bash
+java -jar target/centroplus-connect-1.0-SNAPSHOT.jar
+```
+
+## Tecnologías utilizadas
+
+- Spring Boot 3.3
+- Spring Web
+- Spring Data JPA
+- Spring Validation
+- SQLite
+- Hibernate
+- SpringDoc OpenAPI
+- Maven
+- Java 21
+
 
 </div>
