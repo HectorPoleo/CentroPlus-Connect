@@ -3,21 +3,30 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="es.ies.puerto.controller.IncidenciasController" style="-fx-padding: 20;">
-    <Label text="Gestión de Incidencias" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
-    
-    <TableView fx:id="incidenciasTable" VBox.vgrow="ALWAYS">
+<VBox spacing="0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="es.ies.puerto.controller.IncidenciasController"
+      style="-fx-background-color: #f2f2f7;">
+
+    <HBox style="-fx-background-color: #f2f2f7; -fx-padding: 20 16 8 16;">
+        <Label text="Incidencias"
+               style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1c1c1e;"/>
+    </HBox>
+
+    <TableView fx:id="incidenciasTable" VBox.vgrow="ALWAYS"
+               style="-fx-background-color: white; -fx-border-width: 0; -fx-font-size: 13;">
         <columns>
-            <TableColumn fx:id="colIdIncidencia" text="ID" prefWidth="50"/>
-            <TableColumn fx:id="colIdUsuario" text="Usuario" prefWidth="70"/>
-            <TableColumn fx:id="colAsunto" text="Asunto" prefWidth="150"/>
-            <TableColumn fx:id="colDescripcion" text="Descripción" prefWidth="250"/>
-            <TableColumn fx:id="colFecha" text="Fecha" prefWidth="100"/>
-            <TableColumn fx:id="colEstado" text="Estado" prefWidth="100"/>
+            <TableColumn fx:id="colIdIncidencia" text="ID" prefWidth="40"/>
+            <TableColumn fx:id="colIdUsuario" text="Usuario" prefWidth="60"/>
+            <TableColumn fx:id="colAsunto" text="Asunto" prefWidth="110"/>
+            <TableColumn fx:id="colDescripcion" text="Descripción" prefWidth="100"/>
+            <TableColumn fx:id="colFecha" text="Fecha" prefWidth="75"/>
+            <TableColumn fx:id="colEstado" text="Estado" prefWidth="75"/>
         </columns>
     </TableView>
 
-    <HBox spacing="10" alignment="CENTER_RIGHT">
-        <Button text="Registrar Incidencia" onAction="#nuevaIncidencia" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
+    <HBox style="-fx-padding: 12 16;">
+        <Button text="+ Registrar Incidencia" onAction="#nuevaIncidencia"
+                maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                style="-fx-background-color: #ff9500; -fx-text-fill: white; -fx-background-radius: 12; -fx-font-size: 15; -fx-font-weight: bold; -fx-padding: 14 0; -fx-border-width: 0; -fx-cursor: hand;"/>
     </HBox>
 </VBox>
