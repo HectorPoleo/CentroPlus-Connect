@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ActividadesController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">centroplus</a> &gt; <a href="index.source.html" class="el_package">es.ies.puerto.controller</a> &gt; <span class="el_source">ActividadesController.java</span></div><h1>ActividadesController.java</h1><pre class="source lang-java linenums">package es.ies.puerto.controller;
+
+import es.ies.puerto.modelo.Actividades;
+import es.ies.puerto.service.sqlite.ActividadesService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import java.io.IOException;
+
+<span class="nc" id="L25">public class ActividadesController implements Initializable {</span>
+
+    @FXML
+    private TableView&lt;Actividades&gt; actividadesTable;
+    @FXML
+    private TableColumn&lt;Actividades, Integer&gt; colId;
+    @FXML
+    private TableColumn&lt;Actividades, String&gt; colNombre;
+    @FXML
+    private TableColumn&lt;Actividades, String&gt; colTipo;
+    @FXML
+    private TableColumn&lt;Actividades, Integer&gt; colDuracion;
+    @FXML
+    private TableColumn&lt;Actividades, Integer&gt; colPrecio;
+    @FXML
+    private TableColumn&lt;Actividades, Integer&gt; colMax;
+    @FXML
+    private TableColumn&lt;Actividades, Integer&gt; colOcupadas;
+    @FXML
+    private TextField searchField;
+
+    private ActividadesService service;
+<span class="nc" id="L47">    private ObservableList&lt;Actividades&gt; masterData = FXCollections.observableArrayList();</span>
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+<span class="nc" id="L51">        service = new ActividadesService();</span>
+
+<span class="nc" id="L53">        colId.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;id&quot;));</span>
+<span class="nc" id="L54">            colNombre.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;nombre&quot;));</span>
+<span class="nc" id="L55">            colTipo.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;tipoActividad&quot;));</span>
+<span class="nc" id="L56">            colDuracion.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;duracion&quot;));</span>
+<span class="nc" id="L57">            colPrecio.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;precio&quot;));</span>
+<span class="nc" id="L58">            colMax.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;plazasMaximas&quot;));</span>
+<span class="nc" id="L59">            colOcupadas.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;plazasOcupadas&quot;));</span>
+
+<span class="nc" id="L61">        loadData();</span>
+
+<span class="nc" id="L63">        searchField.textProperty().addListener((observable, oldValue, newValue) -&gt; {</span>
+<span class="nc" id="L64">            filterActividades(newValue);</span>
+<span class="nc" id="L65">        });</span>
+<span class="nc" id="L66">    }</span>
+
+    private void filterActividades(String searchText) {
+<span class="nc bnc" id="L69" title="All 4 branches missed.">        if (searchText == null || searchText.trim().isEmpty()) {</span>
+<span class="nc" id="L70">            actividadesTable.setItems(masterData);</span>
+<span class="nc" id="L71">            return;</span>
+        }
+<span class="nc" id="L73">        ObservableList&lt;Actividades&gt; filteredList = FXCollections.observableArrayList();</span>
+<span class="nc" id="L74">        String lowerSearch = searchText.toLowerCase();</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        for (Actividades actividad : masterData) {</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">            if (actividad.getNombre().toLowerCase().contains(lowerSearch) ||</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">                actividad.getTipoActividad().toLowerCase().contains(lowerSearch)) {</span>
+<span class="nc" id="L78">                filteredList.add(actividad);</span>
+            }
+<span class="nc" id="L80">        }</span>
+<span class="nc" id="L81">        actividadesTable.setItems(filteredList);</span>
+<span class="nc" id="L82">    }</span>
+
+    @FXML
+    public void loadData() {
+<span class="nc" id="L86">        masterData.clear();</span>
+<span class="nc" id="L87">        List&lt;Actividades&gt; list = service.findAll();</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (list != null) {</span>
+<span class="nc" id="L89">            masterData.addAll(list);</span>
+        }
+<span class="nc" id="L91">        actividadesTable.setItems(masterData);</span>
+<span class="nc" id="L92">    }</span>
+
+    @FXML
+    public void deleteActividad() {
+<span class="nc" id="L96">        Actividades selected = actividadesTable.getSelectionModel().getSelectedItem();</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (selected != null) {</span>
+<span class="nc" id="L98">            service.delete(selected.getId());</span>
+<span class="nc" id="L99">            loadData();</span>
+        }
+<span class="nc" id="L101">    }</span>
+
+    @FXML
+    public void newActividad() {
+        try {
+<span class="nc" id="L106">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;/es/ies/puerto/view/add_actividad.fxml&quot;));</span>
+<span class="nc" id="L107">            Parent root = loader.load();</span>
+
+<span class="nc" id="L109">            AddActividadController controller = loader.getController();</span>
+
+<span class="nc" id="L111">            Stage stage = new Stage();</span>
+<span class="nc" id="L112">            stage.initModality(Modality.APPLICATION_MODAL);</span>
+<span class="nc" id="L113">            stage.setTitle(&quot;Añadir Actividad&quot;);</span>
+<span class="nc" id="L114">            stage.setScene(new Scene(root));</span>
+<span class="nc" id="L115">            stage.showAndWait();</span>
+
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            if (controller.isGuardado()) {</span>
+<span class="nc" id="L118">                loadData();</span>
+            }
+<span class="nc" id="L120">        } catch (IOException e) {</span>
+<span class="nc" id="L121">            e.printStackTrace();</span>
+<span class="nc" id="L122">        }</span>
+<span class="nc" id="L123">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

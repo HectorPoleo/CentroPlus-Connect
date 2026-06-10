@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AddUsuarioController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">centroplus</a> &gt; <a href="index.source.html" class="el_package">es.ies.puerto.controller</a> &gt; <span class="el_source">AddUsuarioController.java</span></div><h1>AddUsuarioController.java</h1><pre class="source lang-java linenums">package es.ies.puerto.controller;
+
+import es.ies.puerto.modelo.Usuario;
+import es.ies.puerto.service.sqlite.UsuarioService;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+<span class="nc" id="L15">public class AddUsuarioController implements Initializable {</span>
+
+    @FXML private TextField idField;
+    @FXML private TextField nombreField;
+    @FXML private TextField dniField;
+    @FXML private TextField emailField;
+    @FXML private TextField telefonoField;
+    @FXML private ComboBox&lt;String&gt; tipoCombo;
+
+<span class="nc" id="L24">    private UsuarioService service = new UsuarioService();</span>
+<span class="nc" id="L25">    private boolean guardado = false;</span>
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+<span class="nc" id="L29">        tipoCombo.getItems().addAll(&quot;ADMIN&quot;, &quot;CLIENTE&quot;, &quot;EMPLEADO&quot;);</span>
+<span class="nc" id="L30">        tipoCombo.getSelectionModel().selectFirst();</span>
+<span class="nc" id="L31">    }</span>
+
+    public boolean isGuardado() {
+<span class="nc" id="L34">        return guardado;</span>
+    }
+
+    @FXML
+    public void guardar() {
+        try {
+<span class="nc" id="L40">            int id = Integer.parseInt(idField.getText());</span>
+<span class="nc" id="L41">            String nombre = nombreField.getText();</span>
+<span class="nc" id="L42">            String dni = dniField.getText();</span>
+<span class="nc" id="L43">            String email = emailField.getText();</span>
+<span class="nc" id="L44">            String telefono = telefonoField.getText();</span>
+<span class="nc" id="L45">            String tipo = tipoCombo.getValue();</span>
+
+<span class="nc" id="L47">            Usuario usuario = new Usuario(id, nombre, dni, email, telefono, tipo);</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            if (service.save(usuario)) {</span>
+<span class="nc" id="L49">                guardado = true;</span>
+<span class="nc" id="L50">                cerrar();</span>
+            } else {
+<span class="nc" id="L52">                mostrarError(&quot;No se pudo guardar el usuario.&quot;);</span>
+            }
+<span class="nc" id="L54">        } catch (NumberFormatException e) {</span>
+<span class="nc" id="L55">            mostrarError(&quot;El ID debe ser un número.&quot;);</span>
+<span class="nc" id="L56">        }</span>
+<span class="nc" id="L57">    }</span>
+
+    @FXML
+    public void cancelar() {
+<span class="nc" id="L61">        cerrar();</span>
+<span class="nc" id="L62">    }</span>
+
+    private void cerrar() {
+<span class="nc" id="L65">        Stage stage = (Stage) idField.getScene().getWindow();</span>
+<span class="nc" id="L66">        stage.close();</span>
+<span class="nc" id="L67">    }</span>
+
+    private void mostrarError(String mensaje) {
+<span class="nc" id="L70">        Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L71">        alert.setContentText(mensaje);</span>
+<span class="nc" id="L72">        alert.showAndWait();</span>
+<span class="nc" id="L73">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
