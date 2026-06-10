@@ -17,12 +17,9 @@
     <packaging>jar</packaging>
     <name>CentroPlus Connect</name>
     <description>API REST de CentroPlus Connect con Spring Boot</description>
-
     <properties>
-        <java.version>17</java.version>
-        <start-class>es.ies.puerto.CentroPlusApplication</start-class>
-    </properties>
-
+    <java.version>21</java.version>
+</properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -46,7 +43,6 @@
             <artifactId>hibernate-community-dialects</artifactId>
         </dependency>
 
-        <!-- ✅ Springdoc OpenAPI — Swagger UI + documentación visual -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -66,27 +62,14 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>21</source>
+                    <target>21</target>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>es.ies.puerto.CentroPlusApplication</mainClass>
-                    <addResources>false</addResources>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+</plugin>
         </plugins>
     </build>
 </project>
