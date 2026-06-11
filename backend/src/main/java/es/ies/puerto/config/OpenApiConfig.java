@@ -1,15 +1,16 @@
 package es.ies.puerto.config;
 
+import java.util.List;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.tags.Tag;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import java.util.List;
 
 @Configuration
 public class OpenApiConfig {
@@ -40,7 +41,7 @@ public class OpenApiConfig {
                                 .name("MIT")
                                 .url("https://opensource.org/licenses/MIT")))
                 .servers(List.of(
-                        new Server().url("http://localhost:8080").description("Servidor local de desarrollo")
+                        new Server().url("http://localhost:8090").description("Servidor local de desarrollo")
                 ))
                 .tags(List.of(
                         new Tag().name("Usuarios").description("Gestión de socios y miembros del centro"),

@@ -33,7 +33,6 @@ public class AddActividadControllerTest {
     @Order(1)
     @DisplayName("isGuardado es false por defecto")
     public void testGuardadoInicialFalse() {
-        // Estado inicial antes de cualquier acción: guardado = false
         boolean guardado = false;
         assertFalse(guardado, "El estado guardado debe ser false inicialmente");
     }
@@ -44,7 +43,6 @@ public class AddActividadControllerTest {
     public void testGuardarDatosValidos() {
         Actividades actividad = new Actividades(1, "Yoga", "Relajación", 60, 20, 15, 0);
         when(mockService.save(actividad)).thenReturn(true);
-
         boolean resultado = mockService.save(actividad);
         assertTrue(resultado, "Guardar una actividad válida debe retornar true");
         verify(mockService, times(1)).save(actividad);
@@ -56,7 +54,6 @@ public class AddActividadControllerTest {
     public void testGuardarDatosDuplicados() {
         Actividades actividad = new Actividades(1, "Yoga", "Relajación", 60, 20, 15, 0);
         when(mockService.save(actividad)).thenReturn(false);
-
         boolean resultado = mockService.save(actividad);
         assertFalse(resultado, "Guardar una actividad con id duplicado debe retornar false");
     }
